@@ -1,0 +1,35 @@
+@import "../../styles/variables";
+
+.sources-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.4s 0.13s ease both;
+
+  .src-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: $radius-md;
+    border: 1px solid $border;
+    font-size: 12px;
+    color: $text-secondary;
+    background: $surface;
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+  }
+
+  .fetch-time {
+    margin-left: auto;
+    font-size: 11.5px;
+    color: $text-tertiary;
+    font-family: $font-mono;
+  }
+}

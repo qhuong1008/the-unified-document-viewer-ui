@@ -1,0 +1,44 @@
+@import "../../styles/variables";
+
+.search-wrap {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+  animation: fadeUp 0.4s 0.05s ease both;
+
+  .search-input {
+    flex: 1;
+    font-family: $font-mono;
+    font-size: 13.5px;
+    letter-spacing: 0.04em;
+    padding: 9px 14px;
+    border: 1px solid $border-md;
+    border-radius: $radius-md;
+    background: $surface;
+    color: $text-primary;
+    outline: none;
+    transition: border-color 0.15s;
+
+    &:focus {
+      border-color: $blue-bar;
+    }
+  }
+
+  .search-btn {
+    padding: 0 22px;
+    font-family: $font-main;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    background: $text-primary;
+    border: none;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
