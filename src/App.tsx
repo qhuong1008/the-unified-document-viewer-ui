@@ -6,11 +6,15 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import MetricCards from "./components/MetricCards/MetricCards";
 import SourceStatus from "./components/SourceStatus/SourceStatus";
 import DocumentCard from "./components/DocumentList/DocumentCard";
+import LoginPage from "./components/LoginPage/LoginPage";
 import { getUnifiedDocuments } from "./services/api";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
-const App: React.FC = () => {
+// Document Viewer Component (formerly App)
+const DocumentViewer: React.FC = () => {
   const [vin, setVin] = useState("");
   const [documents, setDocuments] = useState<VehicleDigitalVault[]>([]);
+  const { logout, user } = useAuth();
 
   const salesDocs = documents.filter(
     (d) => d.source_system === SOURCE_SYSTEM.SALES,
@@ -25,7 +29,8 @@ const App: React.FC = () => {
 
   const handleSearch = () => {
     console.log("Searching for VIN:", vin);
-    getUnifiedDocuments(vin)
+    const token = user?.token || localStorage.getItem("accessToken") || "";
+    getUnifiedDocuments(vin, token)
       .then((docs) => {
         console.log("res:", docs);
         setDocuments(docs);
@@ -42,9 +47,14 @@ const App: React.FC = () => {
           <p className="brand">Keyloop &middot; Operate</p>
           <h1 className="page-title">Document viewer</h1>
         </div>
-        <div className="header-meta">
-          Scenario D<br />
-          Unified Document Viewer
+        <div className="header-actions">
+          <button className="logout-btn" onClick={logout}>
+            Sign out
+          </button>
+          <div className="header-meta">
+            Scenario D<br />
+            Unified Document Viewer
+          </div>
         </div>
       </header>
 
@@ -84,11 +94,36 @@ const App: React.FC = () => {
       </div>
 
       <div className="doc-list">
-        {documents.map((doc, index) => (
+        {documents.map((doc) => (
           <DocumentCard key={doc.id} doc={doc} />
         ))}
       </div>
     </div>
+  );
+};
+
+// Main App Routes
+function AppRoutes() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="loading-page">
+        <div className="loading-spinner"></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  return user ? <DocumentViewer /> : <LoginPage />;
+}
+
+// App with AuthProvider wrapper
+const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 };
 

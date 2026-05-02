@@ -1,0 +1,152 @@
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 24px; // Bo góc mềm mại hơn theo hình ảnh mới
+  padding: 28px 40px;
+  width: 100%;
+  max-width: 480px;
+  animation: fadeUp 0.4s ease both;
+
+  // Căn giữa tiêu đề theo yêu cầu
+  .card-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 12px;
+  }
+
+  .card-sub {
+    text-align: center;
+    font-size: 15px;
+    color: #9a9a94;
+    margin-bottom: 22px;
+    line-height: 1.4;
+  }
+
+  // Nút Sign in màu đen đặc trưng
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    margin-top: 7px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #1a1a18;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: #333332;
+    }
+  }
+
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 18px 0;
+    color: #9a9a94;
+    font-size: 13px;
+
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #e5e5e0;
+    }
+  }
+
+  .sso-btn {
+    width: 100%;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #e5e5e0;
+    border-radius: 12px;
+    color: #5a5a55;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f9f9f8;
+    }
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Tablet breakpoint
+@media (max-width: 768px) {
+  .card {
+    padding: 36px 28px;
+
+    .card-title {
+      font-size: 20px;
+    }
+
+    .card-sub {
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .submit-btn {
+      padding: 14px;
+      margin-top: 24px;
+      font-size: 14px;
+    }
+  }
+}
+
+// Mobile breakpoint
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 16px;
+    border-radius: 16px;
+
+    .card-title {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: 12px;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .submit-btn {
+      padding: 10px;
+      margin-top: 12px;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+
+    .or-divider {
+      margin: 12px 0;
+      font-size: 11px;
+    }
+
+    .sso-btn {
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+  }
+}

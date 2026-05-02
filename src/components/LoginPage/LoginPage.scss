@@ -1,0 +1,59 @@
+/* LoginPage.scss */
+
+.loginContainer {
+  padding: 60px;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  // Thiết lập màu nền cơ bản
+  background-color: #f9f9f8;
+
+  // Tạo hiệu ứng lưới caro bằng linear-gradient
+  background-image:
+    linear-gradient(#e5e5e0 1px, transparent 1px),
+    linear-gradient(90deg, #e5e5e0 1px, transparent 1px);
+
+  // Đảm bảo background phủ kín và cố định khi scroll
+  background-size: 32px 32px;
+  background-attachment: fixed;
+  background-position: center center;
+
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.loginWrap {
+  width: 100%;
+  max-width: 440px; // Giữ kích thước nhỏ gọn như UI expect[cite: 1]
+  z-index: 1; // Đảm bảo nội dung nằm trên background
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.brandRow {
+  padding: 0 40px;
+  width: 100%;
+}
+
+// Tablet breakpoint
+@media (max-width: 768px) {
+  .loginContainer {
+    padding: 40px 24px;
+  }
+}
+
+// Mobile breakpoint
+@media (max-width: 480px) {
+  .loginContainer {
+    padding: 24px 16px;
+    // Use dynamic viewport height to handle mobile browser UI
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    justify-content: center;
+    align-items: center;
+  }
+}

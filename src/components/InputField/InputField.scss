@@ -1,0 +1,107 @@
+/* InputField.scss */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; // Tăng khoảng cách giữa label và input theo UI mới
+  margin-bottom: 20px;
+
+  .password-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    label {
+      font-size: 14px;
+      color: #5a5a55; // Màu xám nhẹ theo thiết kế[cite: 1]
+      font-weight: 500;
+    }
+  }
+
+  input {
+    font-family:
+      "DM Mono", monospace; // Sử dụng font Mono cho nội dung nhập[cite: 1]
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    padding: 14px 16px; // Padding rộng rãi hơn
+    border: 1px solid rgba(0, 0, 0, 0.15); // Viền mờ nhẹ
+    border-radius: 12px; // Độ bo góc lớn hơn khớp với card[cite: 1]
+    background: #f9f9f8; // Màu nền input hơi xám nhẹ
+    color: #1a1a18;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: #9a9a94;
+      letter-spacing: 0.04em;
+    }
+
+    &:focus {
+      border-color: #378add; // Màu xanh accent khi focus[cite: 1]
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(55, 138, 221, 0.1);
+    }
+
+    &.error {
+      border-color: #c0392b;
+      background: #fffcfc;
+    }
+  }
+}
+
+.forgot-link {
+  font-size: 13px;
+  color: #185fa5;
+  text-decoration: none;
+  font-family: "DM Sans", sans-serif;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Tablet breakpoint
+@media (max-width: 768px) {
+  .field {
+    margin-bottom: 16px;
+
+    input {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    .password-label-row {
+      label {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .forgot-link {
+    font-size: 12px;
+  }
+}
+
+// Mobile breakpoint
+@media (max-width: 480px) {
+  .field {
+    margin-bottom: 10px;
+    gap: 4px;
+
+    input {
+      padding: 10px 10px;
+      font-size: 13px;
+      border-radius: 8px;
+    }
+
+    .password-label-row {
+      label {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .forgot-link {
+    font-size: 11px;
+  }
+}
