@@ -27,17 +27,19 @@ const DocumentViewer: React.FC = () => {
     setVin(value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     console.log("Searching for VIN:", vin);
-    const token = user?.token || localStorage.getItem("accessToken") || "";
-    getUnifiedDocuments(vin, token)
-      .then((docs) => {
-        console.log("res:", docs);
-        setDocuments(docs);
-      })
-      .catch((error) => {
-        console.error("Error fetching documents:", error);
-      });
+    try {
+      if (!user?.token) {
+        console.error("No valid token available");
+        return;
+      }
+      const docs = await getUnifiedDocuments(vin, user.token);
+      console.log("res:", docs);
+      setDocuments(docs);
+    } catch (error) {
+      console.error("Error fetching documents:", error);
+    }
   };
 
   return (
